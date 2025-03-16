@@ -7,6 +7,10 @@
 # command after changing this file, to see if there are
 # any tracked files which get ignored after the change.
 #
+
+busybox-1.20.1/
+linux-2.6.34/
+
 # Normal rules
 #
 .*
@@ -64,3 +68,5 @@ ncscope.*
 *.orig
 *~
 \#*#
+
+gdb-7.9/

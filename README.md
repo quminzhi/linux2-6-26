@@ -25,14 +25,20 @@ cd linux-2.6.26
 Configure the kernel using the default configuration for your architecture.
 
 ```bash
-make defconfig
+make ARCH=x86_64 defconfig
+make ARCH=x86_64 menuconfig
 ```
+
+- device driver -> block device -> default ram disk -> change it as 16384 KB
+- kernel hacking -> compile the kernel with debug info
+- kernel hacking -> compile with frame pointer
+- kernel hacking -> KGDB, kernel debug with remote gdb
 
 ## 4. Compile the kernel
 Compile the kernel and modules.
 
 ```bash
-make -j$(nproc)
+make ARCH=x86_64 -j$(nproc)
 make modules
 ```
 
