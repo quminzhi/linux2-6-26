@@ -1,7 +1,8 @@
-.PHONY: qemu initrd clean gdb build_src initrd_src
+.PHONY: qemu initrd clean gdb build_src initrd_src build_gdb
 
 BUSYBOX=busybox-1.20.1
 KERNEL=linux-2.6.34
+GDBDIR=gdb-7.9
 SRC=src
 
 V=x86_64
@@ -49,6 +50,13 @@ build_src:
 # busybox:
 # 	cd $(BUSYBOX) && make defconfig && make menuconfig && make install
 # 	cd $(BUSYBOX) && ./build.sh
+
+# build gdb with python support, python2.7-dev required to install
+build_gdb:
+	rm -rf /usr/local/bin/gdb
+	cd $(GDBDIR) && make clean && \
+		./configure --with-python=/usr/bin/python2.7 && \
+		make && sudo make install
 
 clean:
 	rm -rf $(SRC)/app initrd.img-*
